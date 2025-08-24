@@ -5,7 +5,7 @@ def main():
   b = Bool("b")
   c = Bool("c")
   solver = Solver()
-  solver.add(And(Or([a, b]), Or([Not(a), b, Not(c)])))
+  solver.add(And(Or(a, c), Or(Not(a), b, Not(c))))
   if solver.check() == sat:
     model = solver.model()
     print("Satisfiable")

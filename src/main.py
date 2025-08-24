@@ -91,7 +91,7 @@ class Problem:
     self.resource_constraints.append(ResourceConstraint(self.operations[5], self.operations[8]))
 
   def encode(self, solver: 'Solver'):
-    # 1. 資源制約があるなら、どちらかが先に実行されている
+    # 1. 資源制約があるなら、どちらかが先行して実行されている
     for rc in self.resource_constraints:
       solver.add(Or(rc.precede_a, rc.precede_b))
 

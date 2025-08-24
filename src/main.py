@@ -111,7 +111,7 @@ class Problem:
           solver.add(Or(Not(rc.precede_a), Not(rc.a.start_at_or_later[t]), rc.b.start_at_or_later[t + rc.a.duration]))
         # rc.bが先行しているなら、rc.aはrc.bの実行後に開始される
         for t in range(0, self.makespan - rc.b.duration + 1):
-          # (rc.b.start_at[t] and rc.precede_b) -> rc.a.start_at_or_later[t + op.duration] を同値変形した形
+          # (precede_b and rc.b.start_at[t]) -> rc.a.start_at_or_later[t + op.duration] を同値変形した形
           solver.add(Or(Not(And(rc.precede_b, rc.b.start_at_or_later[t])), rc.a.start_at_or_later[t + rc.b.duration]))
 
   def decode(self, model: 'ModelRef'):

@@ -2,8 +2,16 @@
 
 Solving gp03-01 instances using Z3.
 
+## SAT Ver.
+
 ```sh
 poetry run python ./src/main.py
+```
+
+## SMT Ver.
+
+```sh
+poetry run python ./src/smt.py
 ```
 
 ## References

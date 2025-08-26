@@ -38,11 +38,9 @@ class ResourceConstraint:
     self.precede_b = Bool("pr({},{})".format(b.num, a.num))
 
   def validate(self, model: 'ModelRef') -> bool:
-    if model.eval(self.precede_a):
-      return self.a.start_at + self.a.duration <= self.b.start_at
-    if model.eval(self.precede_b):
-      return self.b.start_at + self.b.duration <= self.a.start_at
-    return False
+    return model.eval(Xor(self.precede_a, self.precede_b)) and \
+      ( self.a.start_at + self.a.duration <= self.b.start_at  or
+         self.b.start_at + self.b.duration <= self.a.start_at )
 
 # gp03-01を表現する
 class Problem:
